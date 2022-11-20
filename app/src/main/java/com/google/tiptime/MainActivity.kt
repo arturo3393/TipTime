@@ -3,6 +3,9 @@ package com.google.tiptime
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import com.google.tiptime.databinding.ActivityMainBinding
 import java.text.NumberFormat
 import kotlin.math.ceil
@@ -20,10 +23,18 @@ class MainActivity : AppCompatActivity() {
             calculateTip()
         }
 
+        binding.darkMode.setOnClickListener {
+            if(binding.darkMode.isChecked){
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+            }else
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+
+        }
+
     }
 
     private fun calculateTip() {
-        val stringInTextField = binding.costOfService.text.toString()
+        val stringInTextField = binding.costOfServiceEditText.text.toString()
         val cost = stringInTextField.toDoubleOrNull()
         if (cost == null) {
             Toast.makeText(this, "You should enter a number", Toast.LENGTH_LONG).show()
