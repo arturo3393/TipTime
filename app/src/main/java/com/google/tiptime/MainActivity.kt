@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             tip = ceil(tip)
         }
 
-        val formattedTip = NumberFormat.getCurrencyInstance().format(0.0)
+        val formattedTip = NumberFormat.getCurrencyInstance().format(tip)
         binding.tipResult.text = getString(R.string.tip_amount, formattedTip)
     }
 
